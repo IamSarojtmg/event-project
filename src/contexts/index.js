@@ -5,7 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 const AuthContext = React.createContext()
 
 export function useAuth(){
-    return useContext(AuthContext) //use context helps pass data without props, 
+    return useContext(AuthContext) //use context helps pass data without props.
 }
 
 export function AuthProvider({children}){
