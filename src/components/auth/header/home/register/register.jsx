@@ -4,6 +4,7 @@ import { doCreateUserWithEmailAndPassword } from "../../../../../firebase/auth";
 import { useAuth } from "../../../../../contexts";
 
 const Register = () => {
+    const navigate = useNavigate('')
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
@@ -50,9 +51,39 @@ const Register = () => {
             value={password} onChange={(e)=>{setPassword(e.target.value)}}
             />
           </div>
-          
+          <div>
+            <label>Confirm password</label>
+            <input 
+            disabled={isRegistering}
+            type="password"
+            autoComplete="off"
+            required
+            value={confirmPassword} onChange={(e)=>{
+                setconfirmPassword(e.target.value)
+            }}
+            />
+          </div>
+
+            {errorMessage &&(
+                <span>{errorMessage}</span>
+            )}
+
+            <button
+            type="submit"
+            disabled={isRegistering}
+            // add classname with a condition
+            
+            >
+                {isRegistering ? 'Signing Up...' : 'Sign up'}
+            </button>
+            <div>already hav an account?{'   '}
+                <Link to={'/login'} >continue</Link>
+            </div>
+
         </form>
       </main>
     </>
   );
 };
+
+export default Register
