@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import Login from "./components/auth/login/index";
+import Register from "./components/auth/register";
+
+import Header from "./components/header/index";
+import Home from "./components/home/index";
+
+import { AuthProvider } from "./contexts";
+import { useRoutes } from "react-router-dom";
+import "./App.css";
 
 function App() {
+  const routesArray = [
+    {
+      path: "*",
+      element: <Login />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "register",
+      element: <Register />,
+    },
+    {
+      path: "/home",
+      element: <Home />,
+    },
+  ];
+
+  let routeElements = useRoutes(routesArray);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <Header />
+      <div>{routeElements}</div>
+    </AuthProvider>
   );
 }
 

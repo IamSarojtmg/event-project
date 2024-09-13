@@ -24,7 +24,7 @@ const Login = () => {
       {userLoggedIn && <Navigate to={"/home"} replace={true} />}
       <main>
         <h3>Welcome back</h3>
-        <form onSubmit={onsubmit}>
+        <form onSubmit={onSubmit}>
           <div>
             <label>email</label>
             <input

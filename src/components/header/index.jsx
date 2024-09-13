@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/index";
 import { doSignOut } from "../../firebase/auth";
-
+//if the user want to log in or sign out and also register new account
 const Header = () => {
   const navigate = useNavigate();
   const { userLoggedIn } = useAuth();
