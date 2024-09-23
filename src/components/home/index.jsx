@@ -15,16 +15,21 @@ const Home = () => {
   const [eventsInfo, setEventsInfo] = useState();
 
   useEffect(() => {
+updateEvents()
+  }, []);
+
+  function updateEvents (){
     getEvents().then((data) => {
       setEventsInfo(data);
     });
-  }, []);
-
+  }
   
   const deleteEvent = async(id)=>{
     try{
       await fetch(`http://localhost:3001/products/${id}`,{
         method:'DELETE'
+      }).then(()=>{
+        updateEvents()
       })
     }catch(error){
       console.error('fail', error)
@@ -63,12 +68,3 @@ const Home = () => {
 
 export default Home;
 
-// function getEvents() {
-//   const fetchMongoDbData = async () => {
-//     const res = await fetch("http://localhost:3001/products");
-//     const data = await res.json();
-//     setEventsInfo(data)
-//   };
-//   fetchMongoDbData();
-
-// }

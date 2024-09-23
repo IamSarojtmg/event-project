@@ -54,6 +54,7 @@ const Login = () => {
 
           >{isSigningIn ? 'Signing In ...':'Sign in'}</button>
         </form>
+        <Link to={'/guest'}>Guest</Link>
         <p>Dont have account<Link to={'/register'}>signup</Link></p>
       </main>
     </div>

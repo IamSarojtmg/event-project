@@ -8,6 +8,8 @@ import { AuthProvider } from "./contexts";
 import { useRoutes } from "react-router-dom";
 import "./App.css";
 import AddButton from "./components/addButton";
+import AsAGuest from "./components/asaguest";
+
 
 function App() {
   const routesArray = [
@@ -30,6 +32,11 @@ function App() {
     {
       path:"/adduser",
       element: <AddButton/>
+    },
+    {
+      path:"/guest",
+      element:<AsAGuest/>
+      
     }
   ];
 
