@@ -7,6 +7,7 @@ import Home from "./components/home/index";
 import { AuthProvider } from "./contexts";
 import { useRoutes } from "react-router-dom";
 import "./App.css";
+import AddButton from "./components/addButton";
 
 function App() {
   const routesArray = [
@@ -26,6 +27,10 @@ function App() {
       path: "/home",
       element: <Home />,
     },
+    {
+      path:"/adduser",
+      element: <AddButton/>
+    }
   ];
 
   let routeElements = useRoutes(routesArray);
