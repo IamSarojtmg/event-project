@@ -2,9 +2,10 @@ import { useState } from "react";
 
 function AddButton() {
   const [title, setTitle] = useState("");
+  const [location, setLocation] = useState("");
+  const [duration, setDuration] = useState(0)
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const [location, setLocation] = useState("");
   const [price, setPrice] = useState("");
 
   const handleSubmit = async (e) => {
@@ -14,6 +15,7 @@ function AddButton() {
       date,
       time,
       location,
+      duration:parseInt(duration),
       price: parseFloat(price),
     };
 
@@ -35,7 +37,9 @@ function AddButton() {
     } catch (error) {
       console.log(error);
     }
+    console.log(product);
   };
+  
 
   return (
     <>
@@ -76,6 +80,9 @@ function AddButton() {
             onChange={(e) => setLocation(e.target.value)}
             required
           ></input>
+        </label>
+        <label>Duration
+          <input type="number" value={duration} onChange={(e)=>setDuration(e.target.value)} required></input>
         </label>
         <label>
           Price

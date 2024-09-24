@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/index";
-import AddButton from "../addButton";
-import DisplayEvents from "../displayEvents";
 import { Link } from "react-router-dom";
 
 export const getEvents = async () => {
@@ -51,11 +49,12 @@ updateEvents()
       <div>
         {eventsInfo.products.map((e) => (
           <main id="event-cont" key={e._id}>
-            <div>{e.title}</div>
-            <div>{e.date}</div>
-            <div>{e.time}</div>
-            <div>{e.location}</div>
-            <div>{e.price}</div>
+            <div>title - {e.title}</div>
+            <div>Date - {e.date}</div>
+            <div>time -{e.time}</div>
+            <div>location -{e.location}</div>
+            <div>£{e.price}</div>
+            <div>Duration -{e.duration}</div>
             <button onClick={()=>deleteEvent(e._id)}>Delete</button>
           </main>
         ))}
