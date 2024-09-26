@@ -37,10 +37,8 @@ function AddButton() {
     } catch (error) {
       console.log(error);
     }
-    console.log(product);
+    // console.log(product);
   };
-  
-
   return (
     <>
       <div>Hi</div>

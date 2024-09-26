@@ -1,9 +1,8 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getEvents } from "./home";
 import { google } from "calendar-link";
 
-
-function AsAGuest(params) {
+function AsAGuest() {
   const [eventsInfo, setEventsInfo] = useState();
 
   useEffect(() => {
@@ -16,47 +15,49 @@ function AsAGuest(params) {
     });
   }
 
-  
-  
   if (!eventsInfo || !eventsInfo.products) {
     return <div>Loading</div>;
   }
 
-  //add them in an object
-  //run them in order
-  let gEvents = {};
+  function formatEventForGoogle(event) {
+    const startDateTime = new Date(event.date);
+    const [hours, minutes] = event.time.split(":");
+    startDateTime.setHours(hours, minutes);
 
-  eventsInfo.products.forEach((e, index) => {
-    gEvents[`event_${index}`] = {
-      title: e.title,
-      duration: [e.duration,'h'],
-      location: e.location,
+    return {
+      title: event.title,
+      start: startDateTime.toISOString(),
+      duration: [event.duration, "hour"], 
+      location: event.location,
+      description: `Price: ${event.price}`,
     };
+  }
+
+
+  const googleUrls = eventsInfo.products.map((event) => {
+    const gEvent = formatEventForGoogle(event);
+    return google(gEvent);
   });
-  console.log(gEvents);
-  
 
-  const googleUrl = google(gEvents)
-  console.log(googleUrl);
-  
-  
-
-
-  
-  return <>
-        <div>
-        {eventsInfo.products.map((e) => (
+  return (
+    <>
+      <div>
+        {eventsInfo.products.map((e, i) => (
           <main id="event-cont" key={e._id}>
             <div>Title - {e.title}</div>
-            <div>Date - {e.date}</div>
+            <div>Date - {new Date(e.date).toDateString()}</div>
             <div>Time - {e.time}</div>
             <div>Location - {e.location}</div>
             <div>Price - {e.price}</div>
-            <div>Duration - {e.duration}</div>
+            <div>Duration - {e.duration} hours</div>
+            <a href={googleUrls[i]} target="_blank" rel="noopener noreferrer">
+              Add to Calendar
+            </a>
           </main>
         ))}
       </div>
-  </>
+    </>
+  );
 }
 
 export default AsAGuest;
