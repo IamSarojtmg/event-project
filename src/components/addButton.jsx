@@ -3,10 +3,11 @@ import { useState } from "react";
 function AddButton() {
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
-  const [duration, setDuration] = useState(0)
+  const [duration, setDuration] = useState(0);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [price, setPrice] = useState("");
+  const [successMessage, setSuccessMessage] = useState(""); // State for success message
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,12 +16,12 @@ function AddButton() {
       date,
       time,
       location,
-      duration:parseInt(duration),
+      duration: parseInt(duration),
       price: parseFloat(price),
     };
 
     try {
-      const response = await fetch("http://localhost:3001/products", {
+      const response = await fetch("https://heroku-api-two-68fd319974e4.herokuapp.com/events", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -31,17 +32,27 @@ function AddButton() {
       if (response.ok) {
         const data = await response.json();
         console.log("event added", data);
+        setSuccessMessage("Event added successfully!"); // Set success message
+        setTitle("");
+        setLocation("");
+        setDuration(0);
+        setDate("");
+        setTime("");
+        setPrice("");
       } else {
         console.log("failed to add the event");
+        setSuccessMessage(""); // Clear message if it fails
       }
     } catch (error) {
       console.log(error);
+      setSuccessMessage(""); // Clear message on error
     }
-    // console.log(product);
   };
+
   return (
     <>
       <div>Hi</div>
+      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>} {/* Show success message */}
       <form onSubmit={handleSubmit}>
         <label>
           Title
@@ -50,7 +61,7 @@ function AddButton() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-          ></input>
+          />
         </label>
         <label>
           Date
@@ -59,16 +70,16 @@ function AddButton() {
             value={date}
             onChange={(e) => setDate(e.target.value)}
             required
-          ></input>
+          />
         </label>
         <label>
-          time
+          Time
           <input
             type="time"
             value={time}
             onChange={(e) => setTime(e.target.value)}
             required
-          ></input>
+          />
         </label>
         <label>
           Location
@@ -77,10 +88,16 @@ function AddButton() {
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             required
-          ></input>
+          />
         </label>
-        <label>Duration
-          <input type="number" value={duration} onChange={(e)=>setDuration(e.target.value)} required></input>
+        <label>
+          Duration
+          <input
+            type="number"
+            value={duration}
+            onChange={(e) => setDuration(e.target.value)}
+            required
+          />
         </label>
         <label>
           Price
@@ -89,7 +106,7 @@ function AddButton() {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             required
-          ></input>
+          />
         </label>
         <button type="submit">Add Event</button>
       </form>

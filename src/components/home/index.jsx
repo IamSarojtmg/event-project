@@ -3,7 +3,9 @@ import { useAuth } from "../../contexts/index";
 import { Link } from "react-router-dom";
 
 export const getEvents = async () => {
-  const res = await fetch("http://localhost:3001/products");
+  const res = await fetch(
+    "https://heroku-api-two-68fd319974e4.herokuapp.com/events"
+  );
   const data = await res.json();
   return data;
 };
@@ -13,28 +15,29 @@ const Home = () => {
   const [eventsInfo, setEventsInfo] = useState();
 
   useEffect(() => {
-updateEvents()
+    updateEvents();
   }, []);
 
-  function updateEvents (){
+  function updateEvents() {
     getEvents().then((data) => {
       setEventsInfo(data);
     });
   }
   
-  const deleteEvent = async(id)=>{
-    try{
-      await fetch(`http://localhost:3001/products/${id}`,{
-        method:'DELETE'
-      }).then(()=>{
-        updateEvents()
-      })
-    }catch(error){
-      console.error('fail', error)
+  const deleteEvent = async (id) => {
+    try {
+      await fetch(`https://heroku-api-two-68fd319974e4.herokuapp.com/events/${id}`, {
+        method: "DELETE",
+      }).then(() => {
+        updateEvents();
+      });
+    } catch (error) {
+      console.error("fail", error);
     }
-  }
+  };
+  console.log(eventsInfo);
   
-  if (!eventsInfo || !eventsInfo.products) {
+  if (!eventsInfo || !eventsInfo.events) {
     return <div>Loading</div>;
   }
 
@@ -47,7 +50,7 @@ updateEvents()
       </div>
       <Link to="/adduser">Add Event</Link>
       <div>
-        {eventsInfo.products.map((e) => (
+        {eventsInfo.events.map((e) => (
           <main id="event-cont" key={e._id}>
             <div>title - {e.title}</div>
             <div>Date - {e.date}</div>
@@ -55,15 +58,12 @@ updateEvents()
             <div>location -{e.location}</div>
             <div>£{e.price}</div>
             <div>Duration -{e.duration}</div>
-            <button onClick={()=>deleteEvent(e._id)}>Delete</button>
+            <button onClick={() => deleteEvent(e._id)}>Delete</button>
           </main>
         ))}
       </div>
-
-
     </>
   );
 };
 
 export default Home;
-

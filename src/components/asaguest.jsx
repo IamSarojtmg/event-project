@@ -15,7 +15,7 @@ function AsAGuest() {
     });
   }
 
-  if (!eventsInfo || !eventsInfo.products) {
+  if (!eventsInfo || !eventsInfo.events) {
     return <div>Loading</div>;
   }
 
@@ -34,7 +34,7 @@ function AsAGuest() {
   }
 
 
-  const googleUrls = eventsInfo.products.map((event) => {
+  const googleUrls = eventsInfo.events.map((event) => {
     const gEvent = formatEventForGoogle(event);
     return google(gEvent);
   });
@@ -42,7 +42,7 @@ function AsAGuest() {
   return (
     <>
       <div>
-        {eventsInfo.products.map((e, i) => (
+        {eventsInfo.events.map((e, i) => (
           <main id="event-cont" key={e._id}>
             <div>Title - {e.title}</div>
             <div>Date - {new Date(e.date).toDateString()}</div>
