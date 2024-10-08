@@ -60,6 +60,7 @@ function AddButton() {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            minLength={3}
             required
           />
         </label>
@@ -96,6 +97,7 @@ function AddButton() {
             type="number"
             value={duration}
             onChange={(e) => setDuration(e.target.value)}
+            min="1"
             required
           />
         </label>
@@ -105,6 +107,7 @@ function AddButton() {
             type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            min="0"
             required
           />
         </label>

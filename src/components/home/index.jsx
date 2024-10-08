@@ -53,11 +53,11 @@ const Home = () => {
         {eventsInfo.events.map((e) => (
           <main id="event-cont" key={e._id}>
             <div>title - {e.title}</div>
-            <div>Date - {e.date}</div>
+            <div>Date - {e.date.substring(0,10)}</div>
             <div>time -{e.time}</div>
             <div>location -{e.location}</div>
-            <div>£{e.price}</div>
-            <div>Duration -{e.duration}</div>
+            <div>Price £{e.price}</div>
+            <div>Duration {e.duration} hours</div>
             <button onClick={() => deleteEvent(e._id)}>Delete</button>
           </main>
         ))}
