@@ -48,9 +48,10 @@ function AddButton() {
 
   return (
     <>
-      <div>Hi</div>
-      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>} {/* Show success message */}
-      <form onSubmit={handleSubmit}>
+    <div className="main-cont">
+      <div>Event Details</div>
+      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>} 
+      <form onSubmit={handleSubmit} id="form-cont">
         <label>
           Title
           <input
@@ -59,7 +60,7 @@ function AddButton() {
             onChange={(e) => setTitle(e.target.value)}
             minLength={3}
             required
-          />
+            />
         </label>
         <label>
           Date
@@ -68,7 +69,7 @@ function AddButton() {
             value={date}
             onChange={(e) => setDate(e.target.value)}
             required
-          />
+            />
         </label>
         <label>
           Time
@@ -77,7 +78,7 @@ function AddButton() {
             value={time}
             onChange={(e) => setTime(e.target.value)}
             required
-          />
+            />
         </label>
         <label>
           Location
@@ -86,7 +87,7 @@ function AddButton() {
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             required
-          />
+            />
         </label>
         <label>
           Duration
@@ -95,8 +96,9 @@ function AddButton() {
             value={duration}
             onChange={(e) => setDuration(e.target.value)}
             min="1"
+            max="12"
             required
-          />
+            />
         </label>
         <label>
           Price
@@ -106,10 +108,11 @@ function AddButton() {
             onChange={(e) => setPrice(e.target.value)}
             min="0"
             required
-          />
+            />
         </label>
-        <button type="submit">Add Event</button>
+        <button className="add-btn" type="submit">Add Event</button>
       </form>
+            </div>
     </>
   );
 }

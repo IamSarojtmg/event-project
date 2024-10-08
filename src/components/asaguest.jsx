@@ -40,23 +40,26 @@ function AsAGuest() {
   });
 
   return (
-    <>
-      <div>
-        {eventsInfo.events.map((e, i) => (
-          <main id="event-cont" key={e._id}>
-            <div>Title - {e.title}</div>
-            <div>Date - {new Date(e.date).toDateString()}</div>
-            <div>Time - {e.time}</div>
-            <div>Location - {e.location}</div>
-            <div>Price - {e.price}</div>
-            <div>Duration - {e.duration} hours</div>
-            <a href={googleUrls[i]} target="_blank" rel="noopener noreferrer">
-              Add to Calendar
-            </a>
-          </main>
-        ))}
-      </div>
-    </>
+ <div className="events-container">
+      {eventsInfo.events.map((e, i) => (
+        <main className="event-card" key={e._id}>
+          <div className="event-title">{e.title}</div>
+          <div className="event-date">Date: {new Date(e.date).toDateString()}</div>
+          <div className="event-time">Time: {e.time}</div>
+          <div className="event-location">Location: {e.location}</div>
+          <div className="event-price">Price: £{e.price}</div>
+          <div className="event-duration">Duration: {e.duration} hours</div>
+          <a
+            href={googleUrls[i]}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="calendar-link"
+          >
+            Add to Calendar
+          </a>
+        </main>
+      ))}
+    </div>
   );
 }
 
