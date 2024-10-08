@@ -35,7 +35,6 @@ const Home = () => {
       console.error("fail", error);
     }
   };
-  console.log(eventsInfo);
   
   if (!eventsInfo || !eventsInfo.events) {
     return <div>Loading</div>;

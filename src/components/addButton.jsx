@@ -31,7 +31,6 @@ function AddButton() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("event added", data);
         setSuccessMessage("Event added successfully!"); // Set success message
         setTitle("");
         setLocation("");
@@ -40,11 +39,9 @@ function AddButton() {
         setTime("");
         setPrice("");
       } else {
-        console.log("failed to add the event");
         setSuccessMessage(""); // Clear message if it fails
       }
     } catch (error) {
-      console.log(error);
       setSuccessMessage(""); // Clear message on error
     }
   };
