@@ -49,12 +49,12 @@ function AddButton() {
   return (
     <>
     <div className="main-cont">
-      <div>Event Details</div>
+      <h1>Event Details</h1>
       {successMessage && <p style={{ color: "green" }}>{successMessage}</p>} 
       <form onSubmit={handleSubmit} id="form-cont">
-        <label>
+        <label className="text">
           Title
-          <input
+          <input className="input"
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -62,36 +62,36 @@ function AddButton() {
             required
             />
         </label>
-        <label>
+        <label className="text">
           Date
-          <input
+          <input className="input"
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
             required
             />
         </label>
-        <label>
+        <label className="text">
           Time
-          <input
+          <input className="input"
             type="time"
             value={time}
             onChange={(e) => setTime(e.target.value)}
             required
             />
         </label>
-        <label>
+        <label className="text">
           Location
-          <input
+          <input className="input"
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             required
             />
         </label>
-        <label>
+        <label className="text">
           Duration
-          <input
+          <input className="input"
             type="number"
             value={duration}
             onChange={(e) => setDuration(e.target.value)}
@@ -100,9 +100,9 @@ function AddButton() {
             required
             />
         </label>
-        <label>
+        <label className="text">
           Price
-          <input
+          <input className="input"
             type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
