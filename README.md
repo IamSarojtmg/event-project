@@ -1,10 +1,22 @@
 # Front End for the Event
 
-## Log In
+This project is aimed at building a platform for a small community business, allowing staff to create and share events with community members. Users can sign up for events, add them to their personal calendars (e.g., Google Calendar)
 
+## To Log In
 To log in, please use:
 - **Email**: northcoders@gmail.com
 - **Password**: northcoders123
+
+## To add events to calander
+- Sign in as guest 
+- Click on add to calander
+- Click Save.
+
+## To register
+-  click on sign up
+- enter your email
+- enter and confirm your password.#
+- click sign up
 
 # MVP Completed
 
