@@ -15,7 +15,7 @@ To log in, please use:
 ## To register
 -  click on sign up
 - enter your email
-- enter and confirm your password.#
+- enter and confirm your password.
 - click sign up
 
 # MVP Completed
