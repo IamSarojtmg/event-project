@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function AddButton() {
   const [title, setTitle] = useState("");
@@ -46,10 +47,14 @@ function AddButton() {
     }
   };
 
+
+
   return (
     <>
     <div className="main-cont">
       <h1>Event Details</h1>
+      <Link className="add-event-link" to="/home">Go back</Link>
+
       {successMessage && <p style={{ color: "green" }}>{successMessage}</p>} 
       <form onSubmit={handleSubmit} id="form-cont">
         <label className="text">
