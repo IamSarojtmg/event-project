@@ -48,7 +48,7 @@ const Home = () => {
         {currentUser.displayName ? currentUser.displayName : currentUser.email},
         you are now logged in.
       </div>
-      <Link className="add-event-link" to="/adduser">Add Event</Link>
+      <Link className="add-event-link" to="/addevent">Add Event</Link>
       <div className="events-container">
         {eventsInfo.events.map((e) => (
           <main className="event-card" key={e._id}>

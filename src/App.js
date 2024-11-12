@@ -30,7 +30,7 @@ function App() {
       element: <Home />,
     },
     {
-      path:"/adduser",
+      path:"/addevent",
       element: <AddButton/>
     },
     {
