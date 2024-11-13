@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { doSignInWithEmailAndPassword } from "../../../firebase/auth";
 import { useAuth } from "../../../contexts/index";
+import AdminLogin from "./info";
 
 const Login = () => {
   const { userLoggedIn } = useAuth();
@@ -36,7 +37,9 @@ const Login = () => {
   };
 
   return (
+    <>
     <div style={styles.container}>
+    <AdminLogin/>
       {userLoggedIn && <Navigate to={"/home"} replace={true} />}
       <main style={styles.main}>
         <h3 style={styles.header}>Welcome</h3>
@@ -52,7 +55,7 @@ const Login = () => {
                 setEmail(e.target.value);
               }}
               style={styles.input}
-            />
+              />
           </div>
 
           <div style={styles.formGroup}>
@@ -66,7 +69,7 @@ const Login = () => {
                 setPassword(e.target.value);
               }}
               style={styles.input}
-            />
+              />
           </div>
 
           {errorMessage && <span style={styles.error}>{errorMessage}</span>}
@@ -82,6 +85,7 @@ const Login = () => {
         </p>
       </main>
     </div>
+              </>
   );
 };
 
@@ -92,6 +96,8 @@ const styles = {
     alignItems: "center",
     height: "100vh",
     backgroundColor: "#f4f4f4",
+    flexDirection: "column",
+
   },
   main: {
     padding: "20px",
