@@ -39,7 +39,7 @@ const Login = () => {
     <div style={styles.container}>
       {userLoggedIn && <Navigate to={"/home"} replace={true} />}
       <main style={styles.main}>
-        <h3 style={styles.header}>Welcome back</h3>
+        <h3 style={styles.header}>Welcome</h3>
         <form onSubmit={onSubmit} style={styles.form}>
           <div style={styles.formGroup}>
             <label style={styles.label}>Email</label>
@@ -99,6 +99,9 @@ const styles = {
     backgroundColor: "#fff",
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     width: "320px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center", 
   },
   header: {
     textAlign: "center",
@@ -118,7 +121,7 @@ const styles = {
   },
   input: {
     padding: "10px",
-    width: "100%",
+    width: "93%",
     border: "1px solid #ccc",
     borderRadius: "4px",
     fontSize: "16px",
@@ -136,6 +139,7 @@ const styles = {
     borderRadius: "4px",
     cursor: "pointer",
     fontSize: "16px",
+    
   },
   link: {
     display: "block",

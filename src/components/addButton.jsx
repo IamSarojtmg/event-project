@@ -115,6 +115,9 @@ function AddButton() {
             required
             />
         </label>
+        <label className="tags">
+          <input type="text" />
+        </label>
         <button className="add-btn" type="submit">Add Event</button>
       </form>
             </div>
