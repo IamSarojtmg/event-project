@@ -39,7 +39,7 @@ const Login = () => {
   return (
     <>
     <div style={styles.container}>
-    <AdminLogin/>
+
       {userLoggedIn && <Navigate to={"/home"} replace={true} />}
       <main style={styles.main}>
         <h3 style={styles.header}>Welcome</h3>
@@ -91,6 +91,7 @@ const Login = () => {
 
 const styles = {
   container: {
+    border: "solid",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -108,6 +109,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center", 
+    border: "solid",
   },
   header: {
     textAlign: "center",

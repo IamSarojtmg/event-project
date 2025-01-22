@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function AddButton() {
+  const categories = ['sports', 'music', 'others', 'business' ]
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
   const [duration, setDuration] = useState(0);
@@ -9,7 +10,8 @@ function AddButton() {
   const [time, setTime] = useState("");
   const [price, setPrice] = useState("");
   const [successMessage, setSuccessMessage] = useState(""); // State for success message
-
+  const [tags, setTags] = useState(categories)
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const product = {
@@ -19,7 +21,10 @@ function AddButton() {
       location,
       duration: parseInt(duration),
       price: parseFloat(price),
+      tags,
     };
+    console.log(product);
+    
 
     try {
       const response = await fetch("https://heroku-api-two-68fd319974e4.herokuapp.com/events", {

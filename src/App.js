@@ -44,7 +44,7 @@ function App() {
 
   return (
     <AuthProvider>
-      <Header />
+      {/* <Header /> */}
       <div>{routeElements}</div>
     </AuthProvider>
   );
