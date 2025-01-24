@@ -2,7 +2,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function AddButton() {
+<<<<<<< HEAD
   const categories = ["sports", "music", "others", "business"];
+=======
+  const categories = ['sports', 'music', 'others', 'business' ]
+>>>>>>> cb4ae0767ee42cba2bd640d3d07ff5b5f83961e5
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
   const [duration, setDuration] = useState(0);
@@ -10,8 +14,13 @@ function AddButton() {
   const [time, setTime] = useState("");
   const [price, setPrice] = useState("");
   const [successMessage, setSuccessMessage] = useState(""); // State for success message
+<<<<<<< HEAD
   const [tags, setTags] = useState(categories);
 
+=======
+  const [tags, setTags] = useState(categories)
+  
+>>>>>>> cb4ae0767ee42cba2bd640d3d07ff5b5f83961e5
   const handleSubmit = async (e) => {
     e.preventDefault();
     const product = {
@@ -24,6 +33,10 @@ function AddButton() {
       tags,
     };
     console.log(product);
+<<<<<<< HEAD
+=======
+    
+>>>>>>> cb4ae0767ee42cba2bd640d3d07ff5b5f83961e5
 
     try {
       const response = await fetch(
