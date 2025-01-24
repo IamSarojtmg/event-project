@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { doSignInWithEmailAndPassword } from "../../../firebase/auth";
 import { useAuth } from "../../../contexts/index";
-import AdminLogin from "./info";
+import logo from "../../images/logo.png";
+import Animation from "./animation.jsx";
+
+
 
 const Login = () => {
   const { userLoggedIn } = useAuth();
@@ -38,54 +41,62 @@ const Login = () => {
 
   return (
     <>
-    <div style={styles.container}>
-    <AdminLogin/>
-      {userLoggedIn && <Navigate to={"/home"} replace={true} />}
-      <main style={styles.main}>
-        <h3 style={styles.header}>Welcome</h3>
-        <form onSubmit={onSubmit} style={styles.form}>
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Email</label>
-            <input
-              type="email"
-              autoComplete="email"
-              required
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              style={styles.input}
+      <div style={styles.container}>
+        {/* <AdminLogin/> */}
+        {userLoggedIn && <Navigate to={"/home"} replace={true} />}
+        <main style={styles.main}>
+          <img className="logo" src={logo} alt="" srcset="" />
+
+          <h3 style={styles.header}>
+            Elevating Events with Professional Touch!
+          </h3>
+
+          <form onSubmit={onSubmit} style={styles.form}>
+            <div style={styles.formGroup}>
+              <label style={styles.label}>Email</label>
+              <input
+                type="email"
+                autoComplete="email"
+                required
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                style={styles.input}
               />
-          </div>
+            </div>
 
-          <div style={styles.formGroup}>
-            <label style={styles.label}>Password</label>
-            <input
-              type="password"
-              autoComplete="current-password"
-              required
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              style={styles.input}
+            <div style={styles.formGroup}>
+              <label style={styles.label}>Password</label>
+              <input
+                type="password"
+                autoComplete="current-password"
+                required
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                style={styles.input}
               />
-          </div>
+            </div>
 
-          {errorMessage && <span style={styles.error}>{errorMessage}</span>}
+            {errorMessage && <span style={styles.error}>{errorMessage}</span>}
 
-          <button type="submit" disabled={isSigningIn} style={styles.button}>
-            {isSigningIn ? "Signing In ..." : "Sign In"}
-          </button>
-        </form>
+            <button type="submit" disabled={isSigningIn} style={styles.button}>
+              {isSigningIn ? "Signing In ..." : "Sign In"}
+            </button>
+          </form>
 
-        <Link to={"/guest"} style={styles.link}>Guest</Link>
-        <p style={styles.text}>
-          Don't have an account? <Link to={"/register"} style={styles.link}>Sign Up</Link>
-        </p>
-      </main>
-    </div>
-              </>
+          <Link to={"/guest"} style={styles.link}>
+            Guest
+          </Link>
+          <Link to={"/register"} style={styles.link}>
+            Sign Up
+          </Link>
+        </main>
+        <Animation />
+      </div>
+    </>
   );
 };
 
@@ -97,7 +108,6 @@ const styles = {
     height: "100vh",
     backgroundColor: "#f4f4f4",
     flexDirection: "column",
-
   },
   main: {
     padding: "20px",
@@ -107,7 +117,7 @@ const styles = {
     width: "320px",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center", 
+    alignItems: "center",
   },
   header: {
     textAlign: "center",
@@ -145,7 +155,6 @@ const styles = {
     borderRadius: "4px",
     cursor: "pointer",
     fontSize: "16px",
-    
   },
   link: {
     display: "block",
