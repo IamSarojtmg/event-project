@@ -1,0 +1,40 @@
+.animationCont {
+    overflow: hidden;
+    padding: 60px 0;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+    background-color: red;
+    width: 400px;
+    border-radius: 10px;
+  }
+  
+  @keyframes slide {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-100%);
+    }
+  }
+  
+  .imgWrapper {
+    display: flex;
+    flex-direction: column;
+    animation: 10s slide infinite linear;
+  
+    width: 40%;
+    align-items: center;
+  }
+  
+  .images {
+    margin: 40px 0;
+    width: 150px;
+    height: 150px;
+    object-fit: cover; 
+    border-radius: 10%; 
+  }
+  
+  

@@ -3,7 +3,7 @@ import { Navigate, Link } from "react-router-dom";
 import { doSignInWithEmailAndPassword } from "../../../firebase/auth";
 import { useAuth } from "../../../contexts/index";
 import logo from "../../images/logo.png";
-import Animation from "./animation.jsx";
+import Animation from "./animation/animation.jsx";
 
 
 
@@ -42,11 +42,12 @@ const Login = () => {
   return (
     <>
       <div style={styles.container}>
-<<<<<<< HEAD
         {/* <AdminLogin/> */}
+        <div style={styles.mainCont}>
+
         {userLoggedIn && <Navigate to={"/home"} replace={true} />}
         <main style={styles.main}>
-          <img className="logo" src={logo} alt="" srcset="" />
+          <img style={styles.logo} src={logo} alt="" srcset="" />
 
           <h3 style={styles.header}>
             Elevating Events with Professional Touch!
@@ -64,7 +65,7 @@ const Login = () => {
                   setEmail(e.target.value);
                 }}
                 style={styles.input}
-              />
+                />
             </div>
 
             <div style={styles.formGroup}>
@@ -78,7 +79,7 @@ const Login = () => {
                   setPassword(e.target.value);
                 }}
                 style={styles.input}
-              />
+                />
             </div>
 
             {errorMessage && <span style={styles.error}>{errorMessage}</span>}
@@ -96,63 +97,7 @@ const Login = () => {
           </Link>
         </main>
         <Animation />
-=======
-        {userLoggedIn && <Navigate to={"/home"} replace={true} />}
-        <main style={styles.main}>
-          <section style={styles.loginCont}>
-            <h3 style={styles.header}>Welcome</h3>
-            <form onSubmit={onSubmit} style={styles.form}>
-              <div style={styles.formGroup}>
-                <label style={styles.label}>Email</label>
-                <input
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                  style={styles.input}
-                />
-              </div>
-
-              <div style={styles.formGroup}>
-                <label style={styles.label}>Password</label>
-                <input
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                  style={styles.input}
-                />
-              </div>
-
-              {errorMessage && <span style={styles.error}>{errorMessage}</span>}
-
-              <button
-                type="submit"
-                disabled={isSigningIn}
-                style={styles.button}
-              >
-                {isSigningIn ? "Signing In ..." : "Sign In"}
-              </button>
-            </form>
-
-            <Link to={"/guest"} style={styles.link}>
-              Guest
-            </Link>
-            <p style={styles.text}>
-              Don't have an account?{" "}
-              <Link to={"/register"} style={styles.link}>
-                Sign Up
-              </Link>
-            </p>
-          </section>
-        </main>
->>>>>>> cb4ae0767ee42cba2bd640d3d07ff5b5f83961e5
+                </div>
       </div>
     </>
   );
@@ -164,40 +109,41 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     height: "100vh",
-    backgroundColor: "#eaddd7",
-    flexDirection: "column",
+    width: "100vw",
+    backgroundColor: "gold",
+    // flexDirection: "column",
+    border: "solid black",
+  },
+  mainCont: {
+    // backgroundColor: "black",
+    display: "flex",
+    border: "solid green",
+    alignItems: "center",
+    justifyContent: "space-evenly",
   },
   main: {
-    // border: "solid black",
-    height: "85vh",
-    width: "85vw",
+    border: "solid blue",
+    width: "40%",
     backgroundColor: "#fff",
     borderRadius: "8px",
   },
-  loginCont: {
-    padding: "20px",
-    borderRadius: "8px",
-    backgroundColor: "#fff",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-    width: "320px",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-<<<<<<< HEAD
-=======
-    border: "solid red",
->>>>>>> cb4ae0767ee42cba2bd640d3d07ff5b5f83961e5
-  },
+logo: {
+  width: "20%",
+  border: "solid red",
+},
   header: {
-    textAlign: "center",
+    // border: "solid green",
+    // textAlign: "center",
     marginBottom: "20px",
     color: "#333",
   },
   form: {
+    // border: "solid red",
     display: "flex",
     flexDirection: "column",
   },
   formGroup: {
+    // border: "solid yellow",
     marginBottom: "15px",
   },
   label: {
@@ -205,6 +151,7 @@ const styles = {
     fontWeight: "bold",
   },
   input: {
+    
     padding: "10px",
     width: "93%",
     border: "1px solid #ccc",
