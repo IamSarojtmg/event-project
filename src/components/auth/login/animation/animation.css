@@ -5,9 +5,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 300px;
-    background-color: red;
-    width: 400px;
+    height: 70vh;
+    background-color: #d0bfff;
+    width: 550px;
     border-radius: 10px;
   }
   
@@ -23,7 +23,7 @@
   .imgWrapper {
     display: flex;
     flex-direction: column;
-    animation: 10s slide infinite linear;
+    animation: 20s slide infinite linear;
   
     width: 40%;
     align-items: center;
@@ -31,8 +31,8 @@
   
   .images {
     margin: 40px 0;
-    width: 150px;
-    height: 150px;
+    width: 250px;
+    height: 250px;
     object-fit: cover; 
     border-radius: 10%; 
   }
