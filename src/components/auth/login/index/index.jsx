@@ -5,6 +5,7 @@ import { useAuth } from "../../../../contexts/index";
 import logo from "../../../images/logo.png";
 import Animation from "../animation/animation.jsx";
 import "./index.css";
+import Header from "../../../header/index.jsx";
 
 const Login = () => {
   const { userLoggedIn } = useAuth();
@@ -41,7 +42,6 @@ const Login = () => {
   return (
     <>
       <div className="container">
-        {/* <AdminLogin/> */}
         <div className="mainCont">
           {userLoggedIn && <Navigate to={"/home"} replace={true} />}
           <main className="main">
@@ -58,8 +58,8 @@ const Login = () => {
                   type="email"
                   autoComplete="email"
                   required
-                  placeholder="northcoders@gmail.com"
                   value={email}
+                  placeholder="northcoders@gmail.com"
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
@@ -88,6 +88,12 @@ const Login = () => {
                 {isSigningIn ? "Loging In ..." : "Log In"}
               </button>
             </form>
+            
+            <div class="hr-container">
+              <hr />
+              <span>or</span>
+            </div>
+
             <footer className="otherOptions">
               <Link to={"/guest"} className="link">
                 Guest

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/index";
 import { Link } from "react-router-dom";
+import Header from "../header";
 
 export const getEvents = async () => {
   const res = await fetch(
@@ -43,6 +44,7 @@ const Home = () => {
   return (
     <>
  <div className="home-container">
+  <Header />
       <div className="welcome-message">
         Hello{" "}
         {currentUser.displayName ? currentUser.displayName : currentUser.email},
