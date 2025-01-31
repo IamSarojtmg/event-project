@@ -46,6 +46,7 @@ function AddButton() {
         setDate("");
         setTime("");
         setPrice("");
+        setTags("")
       } else {
         setSuccessMessage(""); // Clear message if it fails
       }
@@ -129,7 +130,13 @@ function AddButton() {
             />
           </label>
           <label className="tags">
-            <input type="text" />
+           <div>
+              <select>
+                <option value="fruit">Fruit</option>
+                <option value="vegetable">Vegetable</option>
+                <option value="meat">Meat</option>
+              </select>
+            </div>
           </label>
           <button className="add-btn" type="submit">
             Add Event
