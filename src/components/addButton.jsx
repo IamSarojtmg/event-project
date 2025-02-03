@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function AddButton() {
-  const categories = ["sports", "music", "others", "business"];
+  const categories = ["Sports", "Music", "Business", "Others"];
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
   const [duration, setDuration] = useState(0);
@@ -46,7 +46,7 @@ function AddButton() {
         setDate("");
         setTime("");
         setPrice("");
-        setTags("")
+        setTags("");
       } else {
         setSuccessMessage(""); // Clear message if it fails
       }
@@ -129,14 +129,14 @@ function AddButton() {
               required
             />
           </label>
-          <label className="tags">
-           <div>
-              <select>
-                <option value="fruit">Fruit</option>
-                <option value="vegetable">Vegetable</option>
-                <option value="meat">Meat</option>
-              </select>
-            </div>
+          <label for="tags" className="tags">Event Type
+          <select name="tags" id="">
+            {categories.map((e) => {
+              console.log(e);
+              
+              return <option value={e}>{e}</option>;
+            })}
+          </select>
           </label>
           <button className="add-btn" type="submit">
             Add Event
