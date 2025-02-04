@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 function AddButton() {
   const categories = ["Sports", "Music", "Business", "Others"];
+
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
   const [duration, setDuration] = useState(0);
@@ -10,7 +11,13 @@ function AddButton() {
   const [time, setTime] = useState("");
   const [price, setPrice] = useState("");
   const [successMessage, setSuccessMessage] = useState(""); // State for success message
-  const [tags, setTags] = useState(categories);
+  const [tags, setTags] = useState();
+
+  const dropDownHandler = (e) => {
+    console.log(e.target.value);
+
+    setTags(e.target.value);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -129,15 +136,21 @@ function AddButton() {
               required
             />
           </label>
-          <label for="tags" className="tags">Event Type
-          <select name="tags" id="">
-            {categories.map((e) => {
-              console.log(e);
-              
-              return <option value={e}>{e}</option>;
-            })}
-          </select>
-          </label>
+
+          <div>
+            Event Type
+            <select value={tags} onChange={dropDownHandler} required>
+              <option value="">Choose a type</option>
+              {categories.map((tags, i) => {
+                return (
+                  <option key={i} value={tags}>
+                    {tags}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+
           <button className="add-btn" type="submit">
             Add Event
           </button>
