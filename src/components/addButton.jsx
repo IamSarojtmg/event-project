@@ -11,10 +11,11 @@ function AddButton() {
   const [time, setTime] = useState("");
   const [price, setPrice] = useState("");
   const [successMessage, setSuccessMessage] = useState(""); // State for success message
-  const [tags, setTags] = useState();
+  const [tags, setTags] = useState("");
 
   const dropDownHandler = (e) => {
-    console.log(e.target.value);
+    // const selectedTag = e.target.value;
+    // console.log("Selected tag:", selectedTag); // Debugging
 
     setTags(e.target.value);
   };
@@ -28,13 +29,14 @@ function AddButton() {
       location,
       duration: parseInt(duration),
       price: parseFloat(price),
-      tags,
+      tags: String(tags),
     };
-    console.log(product);
+    console.log("submiting event",product);
 
     try {
       const response = await fetch(
         "https://heroku-api-two-68fd319974e4.herokuapp.com/events",
+        // "http://localhost:4444/events",
         {
           method: "POST",
           headers: {
@@ -42,10 +44,16 @@ function AddButton() {
           },
           body: JSON.stringify(product),
         }
-      );
+      )
+      // .then((res) => res.json())
+      // .then((data) => console.log("Server response:", data))
+      // .catch((error) => console.error("Error:", error));
 
       if (response.ok) {
         const data = await response.json();
+        console.log("Server response", data); // Debugging
+        console.log('inside response') //not going in here
+        
         setSuccessMessage("Event added successfully!"); // Set success message
         setTitle("");
         setLocation("");
@@ -139,7 +147,7 @@ function AddButton() {
 
           <div>
             Event Type
-            <select value={tags} onChange={dropDownHandler} required>
+            <select value={tags || ""} onChange={dropDownHandler} required>
               <option value="">Choose a type</option>
               {categories.map((tags, i) => {
                 return (
