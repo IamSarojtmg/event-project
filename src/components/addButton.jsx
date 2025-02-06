@@ -144,7 +144,7 @@ function AddButton() {
               required
             />
           </label>
-
+<input type="file" />
           <div>
             Event Type
             <select value={tags || ""} onChange={dropDownHandler} required>
