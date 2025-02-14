@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 const postLink = process.env.REACT_APP_API_URL;
+console.log("API URL:", process.env.REACT_APP_API_URL);
+
 
 function AddButton() {
   const categories = ["Sports", "Music", "Business", "Others"];
