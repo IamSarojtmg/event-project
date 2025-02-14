@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+const postLink = process.env.REACT_APP_API_URL;
 
 function AddButton() {
   const categories = ["Sports", "Music", "Business", "Others"];
@@ -31,11 +32,11 @@ function AddButton() {
       price: parseFloat(price),
       tags: String(tags),
     };
-    console.log("submiting event",product);
+    console.log("submiting event", product);
 
     try {
       const response = await fetch(
-        "https://heroku-api-two-68fd319974e4.herokuapp.com/events",
+        `${postLink}/events`,
         // "http://localhost:4444/events",
         {
           method: "POST",
@@ -44,7 +45,7 @@ function AddButton() {
           },
           body: JSON.stringify(product),
         }
-      )
+      );
       // .then((res) => res.json())
       // .then((data) => console.log("Server response:", data))
       // .catch((error) => console.error("Error:", error));
@@ -52,8 +53,8 @@ function AddButton() {
       if (response.ok) {
         const data = await response.json();
         console.log("Server response", data); // Debugging
-        console.log('inside response') //not going in here
-        
+        console.log("inside response"); //not going in here
+
         setSuccessMessage("Event added successfully!"); // Set success message
         setTitle("");
         setLocation("");
@@ -144,7 +145,7 @@ function AddButton() {
               required
             />
           </label>
-<input type="file" />
+          {/* <input type="file" /> */}
           <div>
             Event Type
             <select value={tags || ""} onChange={dropDownHandler} required>
