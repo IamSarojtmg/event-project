@@ -40,6 +40,7 @@ const Home = () => {
   if (!eventsInfo || !eventsInfo.events) {
     return <div>Loading</div>;
   }
+console.log(eventsInfo);
 
   return (
     <>
@@ -60,6 +61,7 @@ const Home = () => {
             <div className="event-location">Location: {e.location}</div>
             <div className="event-price">Price: £{e.price}</div>
             <div className="event-duration">Duration: {e.duration} hours</div>
+            <div>Tags: {e.tags}</div>
             <button className="delete-button" onClick={() => deleteEvent(e._id)}>Delete</button>
           </main>
         ))}

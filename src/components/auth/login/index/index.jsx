@@ -5,7 +5,6 @@ import { useAuth } from "../../../../contexts/index";
 import logo from "../../../images/logo.png";
 import Animation from "../animation/animation.jsx";
 import "./index.css";
-import Header from "../../../header/index.jsx";
 
 const Login = () => {
   const { userLoggedIn } = useAuth();
