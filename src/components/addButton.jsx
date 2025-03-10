@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-const postLink = process.env.REACT_APP_API_URL;
-console.log("API URL:", process.env.REACT_APP_API_URL);
+import axios from "axios";
 
+const postLink = process.env.REACT_APP_API_URL;
 
 function AddButton() {
   const categories = ["Sports", "Music", "Business", "Others"];
@@ -22,6 +22,27 @@ function AddButton() {
 
     setTags(e.target.value);
   };
+  const [img, setImg] = useState(null);
+  const uploadFile = async (image) => {
+    const data = new FormData();
+
+    data.append("file", image === "image" ? img : "");
+
+    data.append("upload_preset", "images_preset");
+
+    try {
+      const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
+      console.log(cloudName);
+      
+      const api = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
+
+      const res = await axios.post(api, data);
+      const { secure_url } = res.data;
+      return secure_url;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,12 +55,11 @@ function AddButton() {
       price: parseFloat(price),
       tags: String(tags),
     };
-    console.log("submiting event", product);
+    // console.log("submiting event", product);
 
     try {
       const response = await fetch(
         `${postLink}/events`,
-        // "http://localhost:4444/events",
         {
           method: "POST",
           headers: {
@@ -48,14 +68,16 @@ function AddButton() {
           body: JSON.stringify(product),
         }
       );
-      // .then((res) => res.json())
-      // .then((data) => console.log("Server response:", data))
-      // .catch((error) => console.error("Error:", error));
+      await uploadFile("image")
+      setImg(null)
+      console.log('image uploaded');
+      
+
 
       if (response.ok) {
         const data = await response.json();
-        console.log("Server response", data); // Debugging
-        console.log("inside response"); //not going in here
+        // console.log("Server response", data); // Debugging
+        // console.log("inside response"); //not going in here
 
         setSuccessMessage("Event added successfully!"); // Set success message
         setTitle("");
@@ -83,6 +105,21 @@ function AddButton() {
 
         {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
         <form onSubmit={handleSubmit} id="form-cont">
+
+
+
+        <label htmlFor="img">Image Upload</label>
+        <input type="file"
+        accept="image/*"
+        id="img"
+        onChange={(e)=>{setImg(()=>e.target.files[0])}}
+        
+        />
+
+
+
+
+
           <label className="text">
             Title
             <input

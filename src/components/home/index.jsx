@@ -40,7 +40,7 @@ const Home = () => {
   if (!eventsInfo || !eventsInfo.events) {
     return <div>Loading</div>;
   }
-console.log(eventsInfo);
+// console.log(eventsInfo);
 
   return (
     <>
