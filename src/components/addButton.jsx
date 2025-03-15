@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import AddingImg from "./addImg";
 
 const postLink = process.env.REACT_APP_API_URL;
 
@@ -15,34 +15,16 @@ function AddButton() {
   const [price, setPrice] = useState("");
   const [successMessage, setSuccessMessage] = useState(""); // State for success message
   const [tags, setTags] = useState("");
+  // const [url, setUrl] = useState("")
 
   const dropDownHandler = (e) => {
-    // const selectedTag = e.target.value;
-    // console.log("Selected tag:", selectedTag); // Debugging
+    const selectedTag = e.target.value;
+    console.log("Selected tag:", selectedTag); // Debugging
 
     setTags(e.target.value);
   };
-  const [img, setImg] = useState(null);
-  const uploadFile = async (image) => {
-    const data = new FormData();
 
-    data.append("file", image === "image" ? img : "");
 
-    data.append("upload_preset", "images_preset");
-
-    try {
-      const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME;
-      console.log(cloudName);
-      
-      const api = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
-
-      const res = await axios.post(api, data);
-      const { secure_url } = res.data;
-      return secure_url;
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,24 +36,19 @@ function AddButton() {
       duration: parseInt(duration),
       price: parseFloat(price),
       tags: String(tags),
+      // url,
     };
     // console.log("submiting event", product);
 
     try {
-      const response = await fetch(
-        `${postLink}/events`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(product),
-        }
-      );
-      await uploadFile("image")
-      setImg(null)
-      console.log('image uploaded');
-      
+      const response = await fetch(`${postLink}/events`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      });
+
 
 
       if (response.ok) {
@@ -87,6 +64,7 @@ function AddButton() {
         setTime("");
         setPrice("");
         setTags("");
+        // setUrl("")
       } else {
         setSuccessMessage(""); // Clear message if it fails
       }
@@ -105,21 +83,7 @@ function AddButton() {
 
         {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
         <form onSubmit={handleSubmit} id="form-cont">
-
-
-
-        <label htmlFor="img">Image Upload</label>
-        <input type="file"
-        accept="image/*"
-        id="img"
-        onChange={(e)=>{setImg(()=>e.target.files[0])}}
-        
-        />
-
-
-
-
-
+          <AddingImg />
           <label className="text">
             Title
             <input
