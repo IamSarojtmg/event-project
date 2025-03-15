@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 
-function AddingImg() {
+function AddingImg({sendUrl}) {
   const [img, setImg] = useState(null);
+  const [url, setUrl] = useState("");
+  const [imgUploaded, setimgUploaded] = useState(false)
+
   const uploadFile = async (image) => {
     const data = new FormData();
-    data.append("file", img);
+    data.append("file", image);
     data.append("upload_preset", "images_preset");
 
     try {
@@ -14,20 +17,21 @@ function AddingImg() {
       const api = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
 
       const res = await axios.post(api, data);
-
       const { secure_url } = res.data;
 
-      // setUrl(secure_url)
 
-      return secure_url;
+      setimgUploaded(true)
+      sendUrl(secure_url)
+
+      
+      
     } catch (error) {
       console.log(error);
     }
   };
 
-  // await uploadFile("image");
-  // setImg(null);
-  // console.log("image uploaded");
+
+
 
   return (
     <>
@@ -37,11 +41,13 @@ function AddingImg() {
         accept="image/*"
         id="img"
         onChange={(e) => {
-          console.log(e.target.files[0], "saving to setImg");
 
-          // setImg(() => e.target.files[0]);
+          const file = e.target.files[0];
+          setImg(file);
+          uploadFile(file);
         }}
       />
+      <span>{imgUploaded ? "Image Uploaded" : "Please upload image"}</span>
     </>
   );
 }

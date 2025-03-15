@@ -5,6 +5,15 @@ import AddingImg from "./addImg";
 const postLink = process.env.REACT_APP_API_URL;
 
 function AddButton() {
+  const [urlFromChild, setUrlFromChild] = useState('')
+
+  const handleChildUrl = (data)=>{
+    setUrlFromChild(data)
+    
+
+  }
+  console.log(urlFromChild);
+  
   const categories = ["Sports", "Music", "Business", "Others"];
 
   const [title, setTitle] = useState("");
@@ -23,8 +32,6 @@ function AddButton() {
 
     setTags(e.target.value);
   };
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,7 +55,6 @@ function AddButton() {
         },
         body: JSON.stringify(product),
       });
-
 
 
       if (response.ok) {
@@ -83,7 +89,7 @@ function AddButton() {
 
         {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
         <form onSubmit={handleSubmit} id="form-cont">
-          <AddingImg />
+          <AddingImg sendUrl={handleChildUrl} />
           <label className="text">
             Title
             <input
