@@ -5,15 +5,13 @@ import AddingImg from "./addImg";
 const postLink = process.env.REACT_APP_API_URL;
 
 function AddButton() {
-  const [urlFromChild, setUrlFromChild] = useState('')
+  const [urlFromChild, setUrlFromChild] = useState("");
 
-  const handleChildUrl = (data)=>{
-    setUrlFromChild(data)
-    
+  const handleChildUrl = (data) => {
+    setUrlFromChild(data);
+  };
+  console.log(urlFromChild, "the url that i need to sent to mongo");
 
-  }
-  console.log(urlFromChild);
-  
   const categories = ["Sports", "Music", "Business", "Others"];
 
   const [title, setTitle] = useState("");
@@ -28,8 +26,6 @@ function AddButton() {
 
   const dropDownHandler = (e) => {
     const selectedTag = e.target.value;
-    console.log("Selected tag:", selectedTag); // Debugging
-
     setTags(e.target.value);
   };
 
@@ -43,12 +39,13 @@ function AddButton() {
       duration: parseInt(duration),
       price: parseFloat(price),
       tags: String(tags),
-      // url,
+      urlFromChild: String(urlFromChild),
     };
-    // console.log("submiting event", product);
+    console.log("submiting event", product);
 
     try {
       const response = await fetch(`${postLink}/events`, {
+      // const response = await fetch(`http://localhost:4444/events`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,10 +53,9 @@ function AddButton() {
         body: JSON.stringify(product),
       });
 
-
       if (response.ok) {
         const data = await response.json();
-        // console.log("Server response", data); // Debugging
+        console.log("Server response", data); // Debugging
         // console.log("inside response"); //not going in here
 
         setSuccessMessage("Event added successfully!"); // Set success message
@@ -70,7 +66,7 @@ function AddButton() {
         setTime("");
         setPrice("");
         setTags("");
-        // setUrl("")
+        setUrlFromChild("");
       } else {
         setSuccessMessage(""); // Clear message if it fails
       }

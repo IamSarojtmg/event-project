@@ -1,10 +1,10 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-function AddingImg({sendUrl}) {
+function AddingImg({ sendUrl }) {
   const [img, setImg] = useState(null);
   const [url, setUrl] = useState("");
-  const [imgUploaded, setimgUploaded] = useState(false)
+  const [imgUploaded, setimgUploaded] = useState(false);
 
   const uploadFile = async (image) => {
     const data = new FormData();
@@ -19,19 +19,18 @@ function AddingImg({sendUrl}) {
       const res = await axios.post(api, data);
       const { secure_url } = res.data;
 
-
-      setimgUploaded(true)
-      sendUrl(secure_url)
-
-      
-      
+      setimgUploaded(true);
+      sendUrl(secure_url);
     } catch (error) {
       console.log(error);
     }
   };
 
-
-
+  useEffect(()=>{
+    if(url){
+      sendUrl(url)
+    }
+  },[url, sendUrl])
 
   return (
     <>
@@ -41,7 +40,6 @@ function AddingImg({sendUrl}) {
         accept="image/*"
         id="img"
         onChange={(e) => {
-
           const file = e.target.files[0];
           setImg(file);
           uploadFile(file);
