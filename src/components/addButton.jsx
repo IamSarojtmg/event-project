@@ -12,7 +12,7 @@ function AddButton() {
   };
   console.log(urlFromChild, "the url that i need to sent to mongo");
 
-  const categories = ["Sports", "Music", "Business", "Others"];
+  const categories = ["sports", "music", "business", "others"];
 
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
@@ -25,7 +25,6 @@ function AddButton() {
   // const [url, setUrl] = useState("")
 
   const dropDownHandler = (e) => {
-    const selectedTag = e.target.value;
     setTags(e.target.value);
   };
 

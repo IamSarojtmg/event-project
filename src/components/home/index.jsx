@@ -54,6 +54,7 @@ const Home = () => {
         <nav className="tags-cont">
           <FontAwesomeIcon icon={faMusic} />
           <FontAwesomeIcon icon={faVolleyball} />
+          
           <FontAwesomeIcon icon={faBriefcase} />
           <FontAwesomeIcon icon={faTicket} />
         </nav>
